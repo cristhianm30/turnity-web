@@ -14,7 +14,7 @@ import {
   clearAuthCookie,
 } from "@/lib/cookies";
 import { apiClient } from "@/lib/api-client";
-import type { User, LoginRequest, LoginResponse } from "@/types/auth";
+import type { User, LoginRequest, RegisterRequest, LoginResponse } from "@/types/auth";
 
 interface AuthContextType {
   user: User | null;
@@ -22,6 +22,7 @@ interface AuthContextType {
   isLoading: boolean;
   isAuthenticated: boolean;
   login: (credentials: LoginRequest) => Promise<void>;
+  register: (credentials: RegisterRequest) => Promise<void>;
   logout: () => void;
   error: string | null;
 }
@@ -58,13 +59,39 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       const actualToken = response.data.token.token;
       const actualUser = response.data.user;
 
-      // Store credentials and update state
       setAuthCookie(actualToken);
       localStorage.setItem(USER_KEY, JSON.stringify(actualUser));
       setToken(actualToken);
       setUser(actualUser);
     } catch (err: unknown) {
       const errorMessage = err instanceof Error ? err.message : "Login failed. Please try again.";
+      setError(errorMessage);
+      throw new Error(errorMessage);
+    } finally {
+      setIsLoading(false);
+    }
+  }, []);
+
+  const register = useCallback(async (credentials: RegisterRequest) => {
+    setIsLoading(true);
+    setError(null);
+
+    try {
+      const response = await apiClient<LoginResponse>("/auth/register", {
+        method: "POST",
+        body: credentials,
+        isPublic: true,
+      });
+
+      const actualToken = response.data.token.token;
+      const actualUser = response.data.user;
+
+      setAuthCookie(actualToken);
+      localStorage.setItem(USER_KEY, JSON.stringify(actualUser));
+      setToken(actualToken);
+      setUser(actualUser);
+    } catch (err: unknown) {
+      const errorMessage = err instanceof Error ? err.message : "Registration failed. Please try again.";
       setError(errorMessage);
       throw new Error(errorMessage);
     } finally {
@@ -106,6 +133,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     isLoading,
     isAuthenticated: !!token && !!user,
     login,
+    register,
     logout,
     error,
   };

@@ -1,9 +1,9 @@
 "use client";
 
-import { useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useAuth } from "@/context/auth-context";
+import { useUI } from "@/context/ui-context";
 import { cn } from "@/lib/utils";
 import {
   LayoutDashboard,
@@ -13,7 +13,7 @@ import {
   FileText,
   Clock,
   Menu,
-  X,
+  ChevronLeft,
   LogOut,
 } from "lucide-react";
 
@@ -27,7 +27,7 @@ const navItems = [
 ];
 
 export function Sidebar() {
-  const [isExpanded, setIsExpanded] = useState(true);
+  const { isSidebarExpanded, toggleSidebar } = useUI();
   const pathname = usePathname();
   const { user, logout } = useAuth();
 
@@ -42,7 +42,7 @@ export function Sidebar() {
         "fixed left-0 top-0 z-40 h-screen bg-[#f5f3f0]",
         "border-r border-[#e8dcd0]",
         "flex flex-col transition-all duration-300 ease-in-out",
-        isExpanded ? "w-64" : "w-20"
+        isSidebarExpanded ? "w-64" : "w-20"
       )}
     >
       {/* Logo Section */}
@@ -52,7 +52,7 @@ export function Sidebar() {
           "px-4 py-6 transition-all duration-300"
         )}
       >
-        {isExpanded && (
+        {isSidebarExpanded && (
           <Link href="/dashboard" className="flex items-center gap-2">
             <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-[#f59e0b]">
               <span className="font-display text-lg font-bold text-white">T</span>
@@ -62,9 +62,9 @@ export function Sidebar() {
             </span>
           </Link>
         )}
-        {!isExpanded && (
-          <Link href="/dashboard" className="flex h-10 w-10 items-center justify-center rounded-lg bg-[#f59e0b]">
-            <span className="font-display text-lg font-bold text-white">G</span>
+        {!isSidebarExpanded && (
+          <Link href="/dashboard" className="flex h-10 w-10 mx-auto items-center justify-center rounded-lg bg-[#f59e0b]">
+            <span className="font-display text-lg font-bold text-white">T</span>
           </Link>
         )}
       </div>
@@ -85,9 +85,10 @@ export function Sidebar() {
                   ? "border-l-2 border-[#f59e0b] bg-[#fef3c7] text-[#8b6d2e]"
                   : "text-[#7d6d5c] hover:bg-[#faf6e8]"
               )}
+              title={!isSidebarExpanded ? item.label : undefined}
             >
               <Icon className="h-5 w-5 flex-shrink-0" />
-              {isExpanded && <span className="text-sm font-medium">{item.label}</span>}
+              {isSidebarExpanded && <span className="text-sm font-medium">{item.label}</span>}
             </Link>
           );
         })}
@@ -95,14 +96,14 @@ export function Sidebar() {
 
       {/* User Section */}
       <div className="border-t border-[#e8dcd0] px-3 py-4 space-y-2">
-        {isExpanded && user && (
+        {isSidebarExpanded && user && (
           <div className="flex items-center gap-3 rounded-lg bg-[#faf6e8] px-3 py-3">
             <div className="flex h-10 w-10 items-center justify-center rounded-full bg-[#f59e0b] text-sm font-bold text-white">
               {user.firstName.charAt(0)}
             </div>
             <div className="flex-1 min-w-0">
               <p className="text-sm font-semibold text-[#1c1207] truncate">
-                {user.firstName}
+                {user.preferredName || user.firstName}
               </p>
               <p className="text-xs text-[#7d6d5c] truncate">{user.email}</p>
             </div>
@@ -114,21 +115,22 @@ export function Sidebar() {
             "flex w-full items-center gap-3 rounded-lg px-4 py-3 transition-all duration-200",
             "text-[#7d6d5c] hover:bg-[#f0e8df] hover:text-[#c85a54]"
           )}
+          title={!isSidebarExpanded ? "Logout" : undefined}
         >
           <LogOut className="h-5 w-5 flex-shrink-0" />
-          {isExpanded && <span className="text-sm font-medium">Logout</span>}
+          {isSidebarExpanded && <span className="text-sm font-medium">Logout</span>}
         </button>
       </div>
 
       {/* Toggle Button */}
       <div className="border-t border-[#e8dcd0] px-3 py-4">
         <button
-          onClick={() => setIsExpanded(!isExpanded)}
+          onClick={toggleSidebar}
           className="flex w-full items-center justify-center rounded-lg bg-[#faf6e8] p-2.5 transition-all hover:bg-[#f5f0e6]"
-          aria-label={isExpanded ? "Collapse sidebar" : "Expand sidebar"}
+          aria-label={isSidebarExpanded ? "Collapse sidebar" : "Expand sidebar"}
         >
-          {isExpanded ? (
-            <X className="h-5 w-5 text-[#7d6d5c]" />
+          {isSidebarExpanded ? (
+            <ChevronLeft className="h-5 w-5 text-[#7d6d5c]" />
           ) : (
             <Menu className="h-5 w-5 text-[#7d6d5c]" />
           )}

@@ -6,7 +6,7 @@ export function proxy(request: NextRequest) {
   const token = request.cookies.get(TOKEN_KEY)?.value;
 
   // Public routes that don't require authentication
-  const publicRoutes = ["/login"];
+  const publicRoutes = ["/login", "/register"];
   const pathname = request.nextUrl.pathname;
 
   // Check if the current route is public

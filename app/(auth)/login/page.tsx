@@ -6,6 +6,14 @@ import { useAuth } from "@/context/auth-context";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import Link from "next/link";
+import { 
+  Mail, 
+  Lock, 
+  ArrowRight, 
+  LogIn,
+  LayoutDashboard,
+  CheckCircle2
+} from "lucide-react";
 
 export default function LoginPage() {
   const router = useRouter();
@@ -25,9 +33,7 @@ export default function LoginPage() {
 
     try {
       await login({ email, password });
-      // Refresh router to ensure server-side check of cookie
       router.refresh();
-      // Then navigate to dashboard
       setTimeout(() => {
         router.push("/dashboard");
       }, 200);
@@ -39,181 +45,144 @@ export default function LoginPage() {
   }
 
   return (
-    <div className="flex min-h-screen overflow-hidden bg-canvas">
-      {/* Left Panel — Illustration */}
-      <div className="hidden w-3/5 bg-gradient-to-br from-[#fffbf0] via-[#fef3c7] to-[#ede0ce] lg:flex lg:items-center lg:justify-center">
-        <div className="relative h-full w-full">
-          {/* SVG Illustration */}
-          <svg
-            viewBox="0 0 400 400"
-            className="absolute inset-0 h-full w-full opacity-90"
-            preserveAspectRatio="xMidYMid slice"
-          >
-            {/* Illustration petals */}
-            <circle cx="200" cy="200" r="120" fill="#FCD34D" opacity="0.8" />
-            <circle cx="200" cy="200" r="100" fill="#F59E0B" opacity="0.7" />
+    <div className="flex min-h-screen bg-[#faf9f6]">
+      {/* Visual Content Section */}
+      <div className="hidden lg:flex lg:w-1/2 p-12 flex-col justify-between bg-gradient-to-br from-[#fef3c7] via-[#fffbeb] to-[#ede0ce] relative overflow-hidden">
+        {/* Decorative Circles */}
+        <div className="absolute top-[-10%] left-[-10%] w-96 h-96 bg-[#fcd34d] rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob"></div>
+        <div className="absolute bottom-[-10%] right-[-10%] w-96 h-96 bg-[#f59e0b] rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob animation-delay-4000"></div>
 
-            {/* Petals - using overlapping circles */}
-            {[0, 45, 90, 135, 180, 225, 270, 315].map((angle, i) => {
-              const rad = (angle * Math.PI) / 180;
-              const x = 200 + Math.cos(rad) * 140;
-              const y = 200 + Math.sin(rad) * 140;
-              const hue = 30 + angle * 0.5;
-              return (
-                <ellipse
-                  key={i}
-                  cx={x}
-                  cy={y}
-                  rx="35"
-                  ry="65"
-                  fill={`hsl(${hue}, 90%, 55%)`}
-                  opacity="0.85"
-                  transform={`rotate(${angle} ${x} ${y})`}
-                />
-              );
-            })}
+        <div className="z-10">
+          <Link href="/" className="flex items-center gap-2 group">
+             <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-white shadow-sm ring-1 ring-[#e8dcd0] transition-all group-hover:scale-110">
+                <span className="font-display text-xl font-bold text-[#f59e0b]">T</span>
+             </div>
+             <span className="font-display text-xl font-semibold text-[#1c1207]">Turnity</span>
+          </Link>
+        </div>
 
-            {/* Center disk */}
-            <circle cx="200" cy="200" r="40" fill="#B45309" opacity="0.9" />
+        <div className="z-10 max-w-lg">
+          <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-white/80 backdrop-blur-sm shadow-sm ring-1 ring-white/50 mb-6">
+            <LayoutDashboard className="h-6 w-6 text-[#f59e0b]" />
+          </div>
+          <h2 className="font-display text-5xl font-bold text-[#1c1207] leading-tight mb-6">
+            Great to see you <span className="text-[#f59e0b]">again.</span>
+          </h2>
+          <p className="text-xl text-[#8b6545] mb-8 leading-relaxed">
+            Log in to manage your team, review shifts, and keep your operations running smoothly.
+          </p>
+          
+          <div className="space-y-4">
+             {[
+               "Personalized dashboard",
+               "Real-time shift updates",
+               "Secure access to payroll"
+             ].map((feature, i) => (
+               <div key={i} className="flex items-center gap-3">
+                 <div className="flex h-6 w-6 items-center justify-center rounded-full bg-[#fde68a] text-[#b45309]">
+                    <CheckCircle2 className="h-4 w-4" />
+                 </div>
+                 <span className="text-[#1c1207] font-medium">{feature}</span>
+               </div>
+             ))}
+          </div>
+        </div>
 
-            {/* Decorative seed pattern */}
-            {[...Array(20)].map((_, i) => {
-              const angle = (i * 360) / 20;
-              const rad = (angle * Math.PI) / 180;
-              const x = 200 + Math.cos(rad) * 20;
-              const y = 200 + Math.sin(rad) * 20;
-              return (
-                <circle
-                  key={`seed-${i}`}
-                  cx={x}
-                  cy={y}
-                  r="4"
-                  fill="#8B4513"
-                  opacity="0.6"
-                />
-              );
-            })}
-
-            {/* Stem */}
-            <line
-              x1="200"
-              y1="320"
-              x2="200"
-              y2="400"
-              stroke="#6B5E52"
-              strokeWidth="8"
-              opacity="0.7"
-            />
-
-            {/* Leaves */}
-            <ellipse
-              cx="150"
-              cy="340"
-              rx="25"
-              ry="50"
-              fill="#C47B15"
-              opacity="0.6"
-              transform="rotate(-30 150 340)"
-            />
-            <ellipse
-              cx="250"
-              cy="360"
-              rx="25"
-              ry="50"
-              fill="#C47B15"
-              opacity="0.6"
-              transform="rotate(30 250 360)"
-            />
-          </svg>
-
-           {/* Bottom text accent */}
-           <div className="absolute inset-x-0 bottom-12 text-center">
-             <p className="font-display text-2xl font-semibold text-[#1c1207] opacity-70">
-               Every team deserves to flourish
-             </p>
-           </div>
+        <div className="z-10">
+           <p className="text-sm text-[#8b6545] opacity-60">
+             © 2026 Turnity. Internal Management System.
+           </p>
         </div>
       </div>
 
-      {/* Right Panel — Form */}
-      <div className="flex w-full flex-col items-center justify-center px-6 py-12 lg:w-2/5 lg:px-8">
-         <div className="w-full max-w-sm">
-           {/* Brand Wordmark */}
-           <div className="mb-12 text-center">
-             <h1 className="font-display text-4xl font-semibold text-[#1c1207]">
-               Turnity
-             </h1>
-             <p className="mt-2 text-sm text-[#8b6545]">
-               Internal Management System
-             </p>
-           </div>
+      {/* Form Section */}
+      <div className="w-full lg:w-1/2 flex items-center justify-center p-6 sm:p-12 lg:p-24">
+        <div className="w-full max-w-[400px]">
+          <div className="mb-10 text-center lg:text-left">
+            <h1 className="font-display text-3xl font-bold text-[#1c1207] mb-3">
+              Welcome Back
+            </h1>
+            <p className="text-[#8b6545]">
+              Enter your credentials to access your account.
+            </p>
+          </div>
 
-           {/* Welcome text */}
-           <p className="mb-8 text-sm font-medium uppercase tracking-wide text-[#8b6545]">
-             Welcome back
-           </p>
-
-          {/* Form */}
           <form onSubmit={handleSubmit} className="space-y-6">
-            {/* Error Message */}
             {(error || localError) && (
-              <div className="rounded-lg bg-red-50 p-4">
-                <p className="text-sm text-red-700 font-medium">
+              <div className="rounded-2xl bg-red-50 p-4 border border-red-100 flex items-start gap-3">
+                <div className="h-5 w-5 rounded-full bg-red-100 text-red-600 flex items-center justify-center flex-shrink-0 mt-0.5">
+                   <span className="text-xs font-bold">!</span>
+                </div>
+                <p className="text-sm text-red-700 font-medium leading-tight">
                   {error || localError}
                 </p>
               </div>
             )}
 
-            {/* Email Input */}
-            <Input
-              type="email"
-              placeholder="your.email@company.com"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              variant="standard"
-              autoComplete="email"
-              required
-            />
+            <div className="space-y-2">
+              <label className="text-xs font-bold uppercase tracking-wider text-[#8b6545] ml-1">Work Email</label>
+              <div className="relative group">
+                <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-[#c4a882] group-focus-within:text-[#f59e0b] transition-colors">
+                  <Mail className="h-4 w-4" />
+                </div>
+                <Input
+                  type="email"
+                  placeholder="name@company.com"
+                  className="pl-11 h-12 bg-white border-[#e8dcd0] focus:border-[#f59e0b] focus:ring-[#fcd34d] transition-all rounded-xl"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  required
+                  autoComplete="email"
+                />
+              </div>
+            </div>
 
-            {/* Password Input */}
-            <Input
-              type="password"
-              placeholder="Password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              variant="standard"
-              autoComplete="current-password"
-              required
-            />
+            <div className="space-y-2">
+              <div className="flex justify-between items-center px-1">
+                <label className="text-xs font-bold uppercase tracking-wider text-[#8b6545]">Password</label>
+                <Link href="#" className="text-xs font-bold text-[#f59e0b] hover:text-[#b45309] transition-colors">
+                  Forgot?
+                </Link>
+              </div>
+              <div className="relative group">
+                <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-[#c4a882] group-focus-within:text-[#f59e0b] transition-colors">
+                  <Lock className="h-4 w-4" />
+                </div>
+                <Input
+                  type="password"
+                  placeholder="••••••••"
+                  className="pl-11 h-12 bg-white border-[#e8dcd0] focus:border-[#f59e0b] focus:ring-[#fcd34d] transition-all rounded-xl"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  required
+                  autoComplete="current-password"
+                />
+              </div>
+            </div>
 
-            {/* Sign In Button */}
             <Button
               type="submit"
               variant="primary"
               size="lg"
-              className="w-full"
+              className="w-full mt-2 h-12 bg-[#f59e0b] hover:bg-[#b45309] text-white shadow-md shadow-orange-200 rounded-xl"
               isLoading={isLoading}
             >
-              Sign in
+              <span className="flex items-center gap-2">
+                Sign In
+                <LogIn className="h-4 w-4" />
+              </span>
             </Button>
           </form>
 
-           {/* Forgot Password Link */}
-           <div className="mt-6 text-center">
-             <Link
-               href="#"
-               className="text-sm text-[#8b6545] transition-colors hover:text-[#f59e0b]"
-             >
-               Forgot password?
-             </Link>
-           </div>
-
-           {/* Demo Note */}
-           <div className="mt-12 border-t border-[#e8dcd0] pt-6">
-             <p className="text-xs text-[#c4a882]">
-               Demo: Use any email and password to log in.
-             </p>
-           </div>
+          <div className="mt-12 text-center text-sm text-[#8b6545]">
+            Don&apos;t have an account?{" "}
+            <Link
+              href="/register"
+              className="font-bold text-[#f59e0b] hover:text-[#b45309] underline transition-colors"
+            >
+              Register now
+            </Link>
+          </div>
         </div>
       </div>
     </div>

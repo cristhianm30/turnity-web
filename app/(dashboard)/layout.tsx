@@ -1,11 +1,22 @@
+"use client";
+
 import { ReactNode } from "react";
 import { Sidebar } from "@/components/layout/sidebar";
+import { useUI } from "@/context/ui-context";
+import { cn } from "@/lib/utils";
 
 export default function DashboardLayout({ children }: { children: ReactNode }) {
+  const { isSidebarExpanded } = useUI();
+
   return (
     <div className="flex min-h-screen">
       <Sidebar />
-      <main className="flex-1 ml-20 lg:ml-64 transition-all duration-300">
+      <main 
+        className={cn(
+          "flex-1 transition-all duration-300 ease-in-out",
+          isSidebarExpanded ? "ml-64" : "ml-20"
+        )}
+      >
         <div className="p-6 lg:p-8">
           {children}
         </div>

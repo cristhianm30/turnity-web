@@ -24,6 +24,15 @@ export interface LoginRequest {
   password: string;
 }
 
+export interface RegisterRequest {
+  firstName: string;
+  lastName: string;
+  email: string;
+  phone: string;
+  password: string;
+  preferredName: string;
+}
+
 export interface LoginResponse {
   success: boolean;
   data: {
