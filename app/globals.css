@@ -1,0 +1,100 @@
+@import "tailwindcss";
+
+@theme inline {
+  /* Warm Canvas Palette - Turnity inspired */
+  
+  /* Primary Surface Colors */
+  --color-canvas: #faf9f7;
+  --color-canvas-alt: #f5f3f0;
+  
+  /* Sidebar Colors - Light Warm */
+  --color-sidebar-bg: #f5f3f0;
+  --color-sidebar-border: #e8dcd0;
+  --color-sidebar-text: #7d6d5c;
+  --color-sidebar-text-secondary: #9d8b7a;
+  
+  /* Navigation & Active States */
+  --color-nav-active-bg: #fef3c7;
+  --color-nav-active-text: #8b6d2e;
+  --color-nav-hover-bg: #faf6e8;
+  
+  /* Accent Colors - Warm & Sophisticated */
+  --color-accent-warm: #d4a574;
+  --color-accent-dark: #6b4a2d;
+  --color-accent-soft: #e8d4bf;
+  
+  /* Warm Neutrals - Text & Secondary */
+  --color-earth-900: #1c1207;
+  --color-earth-700: #44321a;
+  --color-earth-500: #8b6545;
+  --color-earth-300: #c4a882;
+  --color-earth-100: #ede0ce;
+  
+  /* Sunflower Warm - Accents & Highlights */
+  --color-sun-50: #fffbf0;
+  --color-sun-100: #fef3c7;
+  --color-sun-200: #fde68a;
+  --color-sun-300: #fcd34d;
+  --color-sun-500: #f59e0b;
+  --color-sun-700: #b45309;
+  
+  /* Status Colors - Warm variants */
+  --color-success-warm: #6b8a3e;
+  --color-warning-warm: #c87137;
+  --color-danger-warm: #c85a54;
+  
+  /* Typography */
+  --font-sans: var(--font-dm-sans);
+  --font-display: var(--font-dm-serif-display);
+
+  /* Overrides for Tailwind */
+  --color-background: var(--color-canvas);
+  --color-foreground: var(--color-earth-900);
+}
+
+:root {
+  --background: #faf9f7;
+  --foreground: #1c1207;
+}
+
+@layer utilities {
+  .bg-grain {
+    position: relative;
+  }
+  
+  .bg-grain::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0.02;
+    pointer-events: none;
+    z-index: 1;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+  }
+  
+  /* Warm card background variant */
+  .bg-warm-tint {
+    @apply bg-[#faf6f1];
+  }
+  
+  /* Subtle border utility */
+  .border-warm {
+    @apply border-[#e8dcd0];
+  }
+}
+
+body {
+  background: var(--color-canvas);
+  color: var(--color-earth-900);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1, h2, h3, h4, .font-display {
+  font-family: var(--font-display);
+}
+
