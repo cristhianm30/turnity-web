@@ -14,7 +14,10 @@ export function useAuthEffect(
     callback(isAuthenticated);
   }, [isAuthenticated, callback]);
 
+  const allDependencies = [memoizedCallback, ...dependencies];
+
   useEffect(() => {
     memoizedCallback();
-  }, [memoizedCallback, ...dependencies]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, allDependencies);
 }

@@ -44,6 +44,7 @@ export function Sidebar() {
         "flex flex-col transition-all duration-300 ease-in-out",
         isSidebarExpanded ? "w-64" : "w-20"
       )}
+      aria-label="Main navigation"
     >
       {/* Logo Section */}
       <div
@@ -70,7 +71,7 @@ export function Sidebar() {
       </div>
 
        {/* Navigation Items */}
-      <nav className="flex-1 space-y-2 overflow-y-auto px-3 py-6">
+      <nav className="flex-1 space-y-2 overflow-y-auto px-3 py-6" aria-label="Primary navigation">
         {navItems.map((item) => {
           const Icon = item.icon;
           const isActive = pathname.startsWith(item.href);
@@ -81,13 +82,15 @@ export function Sidebar() {
               href={item.href}
               className={cn(
                 "flex items-center gap-3 rounded-lg px-4 py-3 transition-all duration-200",
+                "focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#f59e0b]",
                 isActive
                   ? "border-l-2 border-[#f59e0b] bg-[#fef3c7] text-[#8b6d2e]"
                   : "text-[#7d6d5c] hover:bg-[#faf6e8]"
               )}
+              aria-current={isActive ? "page" : undefined}
               title={!isSidebarExpanded ? item.label : undefined}
             >
-              <Icon className="h-5 w-5 flex-shrink-0" />
+              <Icon className="h-5 w-5 flex-shrink-0" aria-hidden="true" />
               {isSidebarExpanded && <span className="text-sm font-medium">{item.label}</span>}
             </Link>
           );
@@ -113,11 +116,13 @@ export function Sidebar() {
           onClick={handleLogout}
           className={cn(
             "flex w-full items-center gap-3 rounded-lg px-4 py-3 transition-all duration-200",
+            "focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#f59e0b]",
             "text-[#7d6d5c] hover:bg-[#f0e8df] hover:text-[#c85a54]"
           )}
+          aria-label={!isSidebarExpanded ? "Logout" : undefined}
           title={!isSidebarExpanded ? "Logout" : undefined}
         >
-          <LogOut className="h-5 w-5 flex-shrink-0" />
+          <LogOut className="h-5 w-5 flex-shrink-0" aria-hidden="true" />
           {isSidebarExpanded && <span className="text-sm font-medium">Logout</span>}
         </button>
       </div>
@@ -126,13 +131,18 @@ export function Sidebar() {
       <div className="border-t border-[#e8dcd0] px-3 py-4">
         <button
           onClick={toggleSidebar}
-          className="flex w-full items-center justify-center rounded-lg bg-[#faf6e8] p-2.5 transition-all hover:bg-[#f5f0e6]"
+          className={cn(
+            "flex w-full items-center justify-center rounded-lg bg-[#faf6e8] p-2.5 transition-all",
+            "hover:bg-[#f5f0e6]",
+            "focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#f59e0b]"
+          )}
           aria-label={isSidebarExpanded ? "Collapse sidebar" : "Expand sidebar"}
+          aria-expanded={isSidebarExpanded}
         >
           {isSidebarExpanded ? (
-            <ChevronLeft className="h-5 w-5 text-[#7d6d5c]" />
+            <ChevronLeft className="h-5 w-5 text-[#7d6d5c]" aria-hidden="true" />
           ) : (
-            <Menu className="h-5 w-5 text-[#7d6d5c]" />
+            <Menu className="h-5 w-5 text-[#7d6d5c]" aria-hidden="true" />
           )}
         </button>
       </div>

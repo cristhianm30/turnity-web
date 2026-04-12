@@ -9,7 +9,6 @@ import Link from "next/link";
 import { 
   Mail, 
   Lock, 
-  ArrowRight, 
   LogIn,
   LayoutDashboard,
   CheckCircle2

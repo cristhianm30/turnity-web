@@ -12,6 +12,7 @@ export default function DashboardLayout({ children }: { children: ReactNode }) {
     <div className="flex min-h-screen">
       <Sidebar />
       <main 
+        id="main-content"
         className={cn(
           "flex-1 transition-all duration-300 ease-in-out",
           isSidebarExpanded ? "ml-64" : "ml-20"
