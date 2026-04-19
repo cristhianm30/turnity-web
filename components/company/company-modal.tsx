@@ -5,7 +5,7 @@ import { Company, CreateCompanyRequest } from "@/types/company";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { CompanyCard } from "./company-card";
+import { CompanySelectionList } from "./company-selection-list";
 import { CompanyEmptyState } from "./company-empty-state";
 import { Plus, X } from "lucide-react";
 
@@ -104,43 +104,57 @@ export function CompanyModal({
              </p>
            </div>
 
-          {/* Content */}
-          <div className="p-8">
-            {showCreateForm ? (
-              // Create Form
-              <form onSubmit={handleCreateSubmit} className="space-y-4">
-                <div>
-                  <label htmlFor="name" className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
-                    Company Name *
-                  </label>
-                  <Input
-                    id="name"
-                    name="name"
-                    value={formData.name}
-                    onChange={handleFormChange}
-                    placeholder="e.g. Acme Corp"
-                    required
-                    disabled={isCreating}
-                    className="glass dark:bg-white/5 border-white/30 dark:border-white/10 focus:border-brand-400 focus:ring-brand-500/20 transition-all rounded-xl"
-                   />
+           {/* Content */}
+           <div className="p-8">
+             {showCreateForm ? (
+               // Create Form - Improved styling
+               <form onSubmit={handleCreateSubmit} className="space-y-5">
+                 {createError && (
+                   <div className="rounded-xl glass backdrop-blur-md border border-red-200/50 dark:border-red-900/50 bg-red-50/80 dark:bg-red-950/30 p-4 flex items-start gap-3">
+                     <div className="h-5 w-5 rounded-full bg-red-100 dark:bg-red-900/50 text-red-600 dark:text-red-400 flex items-center justify-center flex-shrink-0 mt-0.5">
+                       <span className="text-xs font-bold">!</span>
+                     </div>
+                     <p className="text-sm text-red-700 dark:text-red-400 font-medium leading-tight">
+                       {createError}
+                     </p>
+                   </div>
+                 )}
+
+                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                   <div>
+                     <label htmlFor="name" className="block text-xs font-bold uppercase tracking-wider text-gray-600 dark:text-gray-400 mb-2">
+                       Company Name *
+                     </label>
+                     <Input
+                       id="name"
+                       name="name"
+                       value={formData.name}
+                       onChange={handleFormChange}
+                       placeholder="e.g. Acme Corp"
+                       required
+                       disabled={isCreating}
+                       className="glass dark:bg-white/5 border-white/30 dark:border-white/10 focus:border-brand-400 focus:ring-brand-500/20 transition-all rounded-lg h-11 text-sm"
+                      />
+                   </div>
+                   <div>
+                     <label htmlFor="taxId" className="block text-xs font-bold uppercase tracking-wider text-gray-600 dark:text-gray-400 mb-2">
+                       Tax ID *
+                     </label>
+                     <Input
+                       id="taxId"
+                       name="taxId"
+                       value={formData.taxId}
+                       onChange={handleFormChange}
+                       placeholder="e.g. 12-3456789"
+                       required
+                       disabled={isCreating}
+                       className="glass dark:bg-white/5 border-white/30 dark:border-white/10 focus:border-brand-400 focus:ring-brand-500/20 transition-all rounded-lg h-11 text-sm"
+                     />
+                   </div>
                  </div>
+
                  <div>
-                   <label htmlFor="taxId" className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
-                     Tax ID *
-                   </label>
-                   <Input
-                     id="taxId"
-                     name="taxId"
-                     value={formData.taxId}
-                     onChange={handleFormChange}
-                     placeholder="e.g. 12-3456789"
-                     required
-                     disabled={isCreating}
-                     className="glass dark:bg-white/5 border-white/30 dark:border-white/10 focus:border-brand-400 focus:ring-brand-500/20 transition-all rounded-xl"
-                   />
-                 </div>
-                 <div>
-                   <label htmlFor="address" className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
+                   <label htmlFor="address" className="block text-xs font-bold uppercase tracking-wider text-gray-600 dark:text-gray-400 mb-2">
                      Address *
                    </label>
                    <Input
@@ -151,11 +165,12 @@ export function CompanyModal({
                      placeholder="e.g. 123 Main St, City, State"
                      required
                      disabled={isCreating}
-                     className="glass dark:bg-white/5 border-white/30 dark:border-white/10 focus:border-brand-400 focus:ring-brand-500/20 transition-all rounded-xl"
+                     className="glass dark:bg-white/5 border-white/30 dark:border-white/10 focus:border-brand-400 focus:ring-brand-500/20 transition-all rounded-lg h-11 text-sm"
                    />
                  </div>
+
                  <div>
-                   <label htmlFor="phone" className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
+                   <label htmlFor="phone" className="block text-xs font-bold uppercase tracking-wider text-gray-600 dark:text-gray-400 mb-2">
                      Phone *
                    </label>
                    <Input
@@ -166,45 +181,34 @@ export function CompanyModal({
                      placeholder="e.g. +1 (555) 123-4567"
                      required
                      disabled={isCreating}
-                     className="glass dark:bg-white/5 border-white/30 dark:border-white/10 focus:border-brand-400 focus:ring-brand-500/20 transition-all rounded-xl"
-                  />
-                </div>
+                     className="glass dark:bg-white/5 border-white/30 dark:border-white/10 focus:border-brand-400 focus:ring-brand-500/20 transition-all rounded-lg h-11 text-sm"
+                    />
+                 </div>
 
-                {createError && (
-                  <div className="rounded-xl glass backdrop-blur-md border border-red-200/50 dark:border-red-900/50 bg-red-50/80 dark:bg-red-950/30 p-4 flex items-start gap-3">
-                    <div className="h-5 w-5 rounded-full bg-red-100 dark:bg-red-900/50 text-red-600 dark:text-red-400 flex items-center justify-center flex-shrink-0 mt-0.5">
-                      <span className="text-xs font-bold">!</span>
-                    </div>
-                    <p className="text-sm text-red-700 dark:text-red-400 font-medium leading-tight">
-                      {createError}
-                    </p>
-                  </div>
-                )}
-
-                <div className="flex gap-3 justify-end pt-4 border-t border-white/20 dark:border-white/10">
-                  <Button
-                    type="button"
-                    variant="ghost"
-                    onClick={() => {
-                      setShowCreateForm(false);
-                      setFormData({ name: "", taxId: "", address: "", phone: "" });
-                    }}
-                    disabled={isCreating}
-                    className="rounded-xl"
-                  >
-                    Cancel
-                  </Button>
-                  <Button
-                    type="submit"
-                    variant="primary"
-                    isLoading={isCreating}
-                    disabled={isCreating}
-                    className="rounded-xl"
-                  >
-                    {isCreating ? "Creating..." : "Create Company"}
-                  </Button>
-                </div>
-              </form>
+                 <div className="flex gap-3 justify-end pt-4 border-t border-white/20 dark:border-white/10">
+                   <Button
+                     type="button"
+                     variant="ghost"
+                     onClick={() => {
+                       setShowCreateForm(false);
+                       setFormData({ name: "", taxId: "", address: "", phone: "" });
+                     }}
+                     disabled={isCreating}
+                     className="rounded-lg"
+                   >
+                     Cancel
+                   </Button>
+                   <Button
+                     type="submit"
+                     variant="primary"
+                     isLoading={isCreating}
+                     disabled={isCreating}
+                     className="rounded-lg"
+                   >
+                     {isCreating ? "Creating..." : "Create Company"}
+                   </Button>
+                 </div>
+               </form>
             ) : // Company List or Empty State
             companies.length === 0 ? (
               <div className="py-8">
@@ -212,30 +216,20 @@ export function CompanyModal({
               </div>
             ) : (
               <div className="space-y-4">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  {companies.map((company) => (
-                    <div
-                      key={company.id}
-                      onClick={() => {
-                        onSelectCompany(company);
-                      }}
-                      className="cursor-pointer"
-                    >
-                      <CompanyCard
-                        company={company}
-                        isSelected={selectedCompanyId === company.id}
-                        onClick={() => {
-                          onSelectCompany(company);
-                        }}
-                      />
-                    </div>
-                  ))}
-                </div>
+                <CompanySelectionList
+                  companies={companies}
+                  selectedCompanyId={selectedCompanyId}
+                  onSelectCompany={onSelectCompany}
+                  onSettingsClick={(company) => {
+                    // TODO: Navigate to company settings page
+                    console.log("Settings for:", company.name);
+                  }}
+                />
 
                 <div className="pt-4 border-t border-white/20 dark:border-white/10 flex gap-3">
                   <Button
                     onClick={() => setShowCreateForm(true)}
-                    variant="glass"
+                    variant="primary"
                     className="flex-1 rounded-xl flex items-center justify-center gap-2"
                   >
                     <Plus className="h-4 w-4" />
