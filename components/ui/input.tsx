@@ -1,7 +1,7 @@
 import { cn } from "@/lib/utils";
 
 interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
-  variant?: "standard" | "filled";
+  variant?: "standard" | "filled" | "glass";
   label?: string;
   error?: string;
 }
@@ -26,7 +26,7 @@ export function Input({
        {label && (
          <label
            htmlFor={inputId}
-           className="mb-2 block text-sm font-medium text-[#1c1207]"
+           className="mb-2 block text-sm font-semibold text-gray-700 dark:text-gray-300"
          >
            {label}
            {required && <span className="text-red-500 ml-1" aria-label="required">*</span>}
@@ -35,17 +35,20 @@ export function Input({
       <input
         id={inputId}
         className={cn(
-          "w-full px-0 py-2.5 font-medium transition-colors",
-          "placeholder-[#c4a882]",
-          "focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2",
+          "w-full px-0 py-2.5 font-medium transition-all duration-200",
+          "placeholder-gray-400 dark:placeholder-gray-500",
+          "focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 dark:focus-visible:ring-offset-gray-950",
           "min-h-[44px]", // Touch target minimum
           // Variant: standard (underline only)
           variant === "standard" &&
-            "bg-transparent border-b-2 border-[#e8dcd0] focus:border-[#f59e0b] focus-visible:ring-[#f59e0b]",
+            "bg-transparent border-b-2 border-gray-200 dark:border-gray-700 text-gray-900 dark:text-white focus:border-sun-500 dark:focus:border-sun-400 focus-visible:ring-sun-500/30 dark:focus-visible:ring-sun-400/30",
           // Variant: filled
           variant === "filled" &&
-            "bg-[#faf6f1] border border-[#e8dcd0] rounded-lg px-4 focus:border-[#f59e0b] focus:bg-white focus-visible:ring-[#f59e0b]",
-          error && "border-red-500 focus:border-red-500 focus-visible:ring-red-500",
+            "bg-gray-50 dark:bg-white/5 border border-gray-200 dark:border-white/10 text-gray-900 dark:text-white rounded-lg px-4 focus:border-sun-500 dark:focus:border-sun-400 focus:bg-white dark:focus:bg-white/10 focus-visible:ring-sun-500/30 dark:focus-visible:ring-sun-400/30",
+          // Variant: glass
+          variant === "glass" &&
+            "glass dark:bg-white/5 border border-white/30 dark:border-white/10 text-gray-900 dark:text-white rounded-xl px-4 focus:border-sun-400 dark:focus:border-sun-400 focus:ring-sun-500/20 dark:focus:ring-sun-400/20",
+          error && "border-red-500 dark:border-red-900/50 focus:border-red-500 dark:focus:border-red-400 focus-visible:ring-red-500/30 dark:focus-visible:ring-red-400/30",
           className
         )}
         required={required}
@@ -57,7 +60,7 @@ export function Input({
       {error && (
         <p 
           id={errorId}
-          className="mt-1 text-sm text-red-600" 
+          className="mt-1 text-sm text-red-600 dark:text-red-400 font-medium" 
           role="alert"
         >
           {error}
