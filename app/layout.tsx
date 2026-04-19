@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { DM_Sans, DM_Serif_Display } from "next/font/google";
 import { AuthProvider } from "@/context/auth-context";
+import { CompanyProvider } from "@/context/company-context";
 import { UIProvider } from "@/context/ui-context";
 import "./globals.css";
 
@@ -53,7 +54,9 @@ export default function RootLayout({
         </a>
         <UIProvider>
           <AuthProvider>
-            {children}
+            <CompanyProvider>
+              {children}
+            </CompanyProvider>
           </AuthProvider>
         </UIProvider>
       </body>

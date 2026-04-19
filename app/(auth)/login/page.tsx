@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import { useAuth } from "@/context/auth-context";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { GoogleSignInButton } from "@/components/auth/google-sign-in-button";
 import Link from "next/link";
 import { 
   Mail, 
@@ -34,7 +35,7 @@ export default function LoginPage() {
       await login({ email, password });
       router.refresh();
       setTimeout(() => {
-        router.push("/dashboard");
+        router.push("/company");
       }, 200);
     } catch (err) {
       setLocalError(
@@ -171,6 +172,22 @@ export default function LoginPage() {
                 <LogIn className="h-4 w-4" />
               </span>
             </Button>
+
+            {/* Divider */}
+            <div className="relative">
+              <div className="absolute inset-0 flex items-center">
+                <div className="w-full border-t border-[#e8dcd0]"></div>
+              </div>
+              <div className="relative flex justify-center text-xs uppercase">
+                <span className="px-2 bg-[#faf9f6] text-[#8b6545]">Or continue with</span>
+              </div>
+            </div>
+
+            {/* Google Sign In Button */}
+            <GoogleSignInButton
+              text="Sign in with Google"
+              className="bg-white border border-[#e8dcd0] text-[#1c1207] hover:bg-gray-50"
+            />
           </form>
 
           <div className="mt-12 text-center text-sm text-[#8b6545]">

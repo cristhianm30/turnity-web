@@ -6,16 +6,22 @@ export function proxy(request: NextRequest) {
   const token = request.cookies.get(TOKEN_KEY)?.value;
 
   // Public routes that don't require authentication
-  const publicRoutes = ["/login", "/register"];
+  const publicRoutes = [
+    "/login",
+    "/register",
+    "/api/auth/google",
+    "/api/auth/callback/google",
+    "/auth/google/success",
+  ];
   const pathname = request.nextUrl.pathname;
 
   // Check if the current route is public
   const isPublicRoute = publicRoutes.some((route) => pathname.startsWith(route));
 
   if (isPublicRoute) {
-    // If user is already logged in, redirect to dashboard
+    // If user is already logged in, redirect to company selection
     if (token) {
-      return NextResponse.redirect(new URL("/dashboard", request.url));
+      return NextResponse.redirect(new URL("/company", request.url));
     }
     return NextResponse.next();
   }

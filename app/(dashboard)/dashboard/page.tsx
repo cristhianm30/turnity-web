@@ -1,8 +1,11 @@
 "use client";
 
 import { useAuth } from "@/context/auth-context";
+import { useCompany } from "@/context/company-context";
+import { useRouter } from "next/navigation";
 import { PageContent } from "@/components/layout/header";
 import { Card } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
 import {
   Users,
   Calendar,
@@ -11,12 +14,14 @@ import {
   TrendingUp,
   ArrowRight,
   CheckCircle2,
+  Building2,
 } from "lucide-react";
 import Link from "next/link";
-import { Button } from "@/components/ui/button";
 
 export default function DashboardPage() {
+  const router = useRouter();
   const { user } = useAuth();
+  const { company } = useCompany();
   const firstName = user?.firstName || "there";
 
   const greeting = () => {
@@ -36,12 +41,35 @@ export default function DashboardPage() {
     <PageContent>
       {/* TOP SECTION: Greeting & Context */}
       <div className="mb-12">
-        <h1 className="font-display text-4xl font-semibold text-[#1c1207]">
-          {greeting()}, {firstName}.
-        </h1>
-        <p className="mt-2 text-[#8b6545]">
-          {todayDate} • 3 pending approvals • 12 shifts today
-        </p>
+        <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-4 mb-6">
+          <div className="flex-1">
+            <h1 className="font-display text-4xl font-semibold text-[#1c1207]">
+              {greeting()}, {firstName}.
+            </h1>
+            <p className="mt-2 text-[#8b6545]">
+              {todayDate} • 3 pending approvals • 12 shifts today
+            </p>
+          </div>
+          {company && (
+            <div className="flex items-center gap-3 bg-[#fef3c7] rounded-lg px-4 py-3 w-fit">
+              <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-[#fcd34d]">
+                <Building2 className="h-5 w-5 text-[#b45309]" />
+              </div>
+              <div className="flex-1">
+                <p className="text-xs font-medium text-[#b45309] uppercase">Company</p>
+                <p className="text-sm font-semibold text-[#1c1207]">{company.name}</p>
+              </div>
+              <Button
+                variant="ghost"
+                size="sm"
+                onClick={() => router.push("/company")}
+                className="ml-2"
+              >
+                Switch
+              </Button>
+            </div>
+          )}
+        </div>
       </div>
 
       {/* KEY METRICS ROW */}
