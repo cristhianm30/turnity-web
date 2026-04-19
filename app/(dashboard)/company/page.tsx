@@ -42,7 +42,7 @@ export default function CompanyPage() {
 
   const handleSelectCompany = (company: Company) => {
     selectCompany(company);
-    router.push("/dashboard");
+    // Don't navigate automatically - let user use Settings or close modal manually
   };
 
   const handleCreateCompany = async (data: CreateCompanyRequest) => {

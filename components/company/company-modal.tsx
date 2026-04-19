@@ -90,125 +90,144 @@ export function CompanyModal({
              </button>
            )}
 
-           {/* Header with Brand Gradient */}
-           <div className="p-8 pb-6 border-b border-brand-500/20 dark:border-brand-500/15 bg-gradient-to-r from-brand-50 to-brand-100/50 dark:from-brand-950/30 dark:to-brand-900/20">
-             <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">
-               {showCreateForm ? "Create New Company" : "Select Company"}
-             </h2>
-             <p className="text-gray-600 dark:text-gray-400">
-               {showCreateForm
-                 ? "Fill in the company details to get started."
-                 : companies.length === 0
-                   ? "You don't have any companies yet."
-                   : `Choose a company to manage or create a new one.`}
-             </p>
-           </div>
+            {/* Header with Brand Gradient */}
+            <div className="p-8 pb-6 border-b border-brand-500/30 dark:border-brand-500/20 bg-gradient-to-br from-brand-600/10 via-brand-500/8 to-brand-400/5 dark:from-brand-600/20 dark:via-brand-500/15 dark:to-brand-400/10">
+              <h2 className="text-2xl font-bold text-brand-900 dark:text-brand-100 mb-2">
+                {showCreateForm ? "Create New Company" : "Select Company"}
+              </h2>
+              <p className="text-brand-700/80 dark:text-brand-200/70">
+                {showCreateForm
+                  ? "Fill in the company details to get started."
+                  : companies.length === 0
+                    ? "You don't have any companies yet."
+                    : `Choose a company to manage or create a new one.`}
+              </p>
+            </div>
 
-           {/* Content */}
-           <div className="p-8">
-             {showCreateForm ? (
-               // Create Form - Improved styling
-               <form onSubmit={handleCreateSubmit} className="space-y-5">
-                 {createError && (
-                   <div className="rounded-xl glass backdrop-blur-md border border-red-200/50 dark:border-red-900/50 bg-red-50/80 dark:bg-red-950/30 p-4 flex items-start gap-3">
-                     <div className="h-5 w-5 rounded-full bg-red-100 dark:bg-red-900/50 text-red-600 dark:text-red-400 flex items-center justify-center flex-shrink-0 mt-0.5">
-                       <span className="text-xs font-bold">!</span>
-                     </div>
-                     <p className="text-sm text-red-700 dark:text-red-400 font-medium leading-tight">
-                       {createError}
-                     </p>
-                   </div>
-                 )}
+            {/* Content */}
+            <div className="p-8">
+              {showCreateForm ? (
+                // Create Form - Improved styling with visual harmony
+                <form onSubmit={handleCreateSubmit} className="space-y-6">
+                  {createError && (
+                    <div className="rounded-xl glass backdrop-blur-md border border-red-200/50 dark:border-red-900/50 bg-red-50/80 dark:bg-red-950/30 p-4 flex items-start gap-3">
+                      <div className="h-5 w-5 rounded-full bg-red-100 dark:bg-red-900/50 text-red-600 dark:text-red-400 flex items-center justify-center flex-shrink-0 mt-0.5">
+                        <span className="text-xs font-bold">!</span>
+                      </div>
+                      <p className="text-sm text-red-700 dark:text-red-400 font-medium leading-tight">
+                        {createError}
+                      </p>
+                    </div>
+                  )}
 
-                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                   <div>
-                     <label htmlFor="name" className="block text-xs font-bold uppercase tracking-wider text-gray-600 dark:text-gray-400 mb-2">
-                       Company Name *
-                     </label>
-                     <Input
-                       id="name"
-                       name="name"
-                       value={formData.name}
-                       onChange={handleFormChange}
-                       placeholder="e.g. Acme Corp"
-                       required
-                       disabled={isCreating}
-                       className="glass dark:bg-white/5 border-white/30 dark:border-white/10 focus:border-brand-400 focus:ring-brand-500/20 transition-all rounded-lg h-11 text-sm"
-                      />
-                   </div>
-                   <div>
-                     <label htmlFor="taxId" className="block text-xs font-bold uppercase tracking-wider text-gray-600 dark:text-gray-400 mb-2">
-                       Tax ID *
-                     </label>
-                     <Input
-                       id="taxId"
-                       name="taxId"
-                       value={formData.taxId}
-                       onChange={handleFormChange}
-                       placeholder="e.g. 12-3456789"
-                       required
-                       disabled={isCreating}
-                       className="glass dark:bg-white/5 border-white/30 dark:border-white/10 focus:border-brand-400 focus:ring-brand-500/20 transition-all rounded-lg h-11 text-sm"
-                     />
-                   </div>
-                 </div>
+                  {/* Fields Grid with visual organization */}
+                  <div className="space-y-4">
+                    {/* Row 1: Company Name & Tax ID */}
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                      <div className="group">
+                        <label htmlFor="name" className="block text-xs font-bold uppercase tracking-widest text-brand-700 dark:text-brand-300 mb-2.5">
+                          Company Name
+                        </label>
+                        <div className="relative">
+                          <div className="absolute inset-0 rounded-lg bg-gradient-to-br from-brand-500/10 via-brand-400/5 to-transparent pointer-events-none"></div>
+                          <Input
+                            id="name"
+                            name="name"
+                            value={formData.name}
+                            onChange={handleFormChange}
+                            placeholder="Acme Corporation"
+                            required
+                            disabled={isCreating}
+                            className="glass dark:bg-white/5 border-brand-200/30 dark:border-brand-400/20 focus:border-brand-400 dark:focus:border-brand-400 focus:ring-brand-500/30 transition-all rounded-lg h-11 text-sm placeholder:text-gray-400 dark:placeholder:text-gray-500"
+                           />
+                        </div>
+                      </div>
+                      <div className="group">
+                        <label htmlFor="taxId" className="block text-xs font-bold uppercase tracking-widest text-brand-700 dark:text-brand-300 mb-2.5">
+                          Tax ID
+                        </label>
+                        <div className="relative">
+                          <div className="absolute inset-0 rounded-lg bg-gradient-to-br from-brand-500/10 via-brand-400/5 to-transparent pointer-events-none"></div>
+                          <Input
+                            id="taxId"
+                            name="taxId"
+                            value={formData.taxId}
+                            onChange={handleFormChange}
+                            placeholder="12-3456789"
+                            required
+                            disabled={isCreating}
+                            className="glass dark:bg-white/5 border-brand-200/30 dark:border-brand-400/20 focus:border-brand-400 dark:focus:border-brand-400 focus:ring-brand-500/30 transition-all rounded-lg h-11 text-sm placeholder:text-gray-400 dark:placeholder:text-gray-500"
+                          />
+                        </div>
+                      </div>
+                    </div>
 
-                 <div>
-                   <label htmlFor="address" className="block text-xs font-bold uppercase tracking-wider text-gray-600 dark:text-gray-400 mb-2">
-                     Address *
-                   </label>
-                   <Input
-                     id="address"
-                     name="address"
-                     value={formData.address}
-                     onChange={handleFormChange}
-                     placeholder="e.g. 123 Main St, City, State"
-                     required
-                     disabled={isCreating}
-                     className="glass dark:bg-white/5 border-white/30 dark:border-white/10 focus:border-brand-400 focus:ring-brand-500/20 transition-all rounded-lg h-11 text-sm"
-                   />
-                 </div>
+                    {/* Row 2: Address */}
+                    <div className="group">
+                      <label htmlFor="address" className="block text-xs font-bold uppercase tracking-widest text-brand-700 dark:text-brand-300 mb-2.5">
+                        Address
+                      </label>
+                      <div className="relative">
+                        <div className="absolute inset-0 rounded-lg bg-gradient-to-br from-brand-500/10 via-brand-400/5 to-transparent pointer-events-none"></div>
+                        <Input
+                          id="address"
+                          name="address"
+                          value={formData.address}
+                          onChange={handleFormChange}
+                          placeholder="123 Main Street, City, State 12345"
+                          required
+                          disabled={isCreating}
+                          className="glass dark:bg-white/5 border-brand-200/30 dark:border-brand-400/20 focus:border-brand-400 dark:focus:border-brand-400 focus:ring-brand-500/30 transition-all rounded-lg h-11 text-sm placeholder:text-gray-400 dark:placeholder:text-gray-500"
+                        />
+                      </div>
+                    </div>
 
-                 <div>
-                   <label htmlFor="phone" className="block text-xs font-bold uppercase tracking-wider text-gray-600 dark:text-gray-400 mb-2">
-                     Phone *
-                   </label>
-                   <Input
-                     id="phone"
-                     name="phone"
-                     value={formData.phone}
-                     onChange={handleFormChange}
-                     placeholder="e.g. +1 (555) 123-4567"
-                     required
-                     disabled={isCreating}
-                     className="glass dark:bg-white/5 border-white/30 dark:border-white/10 focus:border-brand-400 focus:ring-brand-500/20 transition-all rounded-lg h-11 text-sm"
-                    />
-                 </div>
+                    {/* Row 3: Phone */}
+                    <div className="group">
+                      <label htmlFor="phone" className="block text-xs font-bold uppercase tracking-widest text-brand-700 dark:text-brand-300 mb-2.5">
+                        Phone
+                      </label>
+                      <div className="relative">
+                        <div className="absolute inset-0 rounded-lg bg-gradient-to-br from-brand-500/10 via-brand-400/5 to-transparent pointer-events-none"></div>
+                        <Input
+                          id="phone"
+                          name="phone"
+                          value={formData.phone}
+                          onChange={handleFormChange}
+                          placeholder="+1 (555) 123-4567"
+                          required
+                          disabled={isCreating}
+                          className="glass dark:bg-white/5 border-brand-200/30 dark:border-brand-400/20 focus:border-brand-400 dark:focus:border-brand-400 focus:ring-brand-500/30 transition-all rounded-lg h-11 text-sm placeholder:text-gray-400 dark:placeholder:text-gray-500"
+                         />
+                      </div>
+                    </div>
+                  </div>
 
-                 <div className="flex gap-3 justify-end pt-4 border-t border-white/20 dark:border-white/10">
-                   <Button
-                     type="button"
-                     variant="ghost"
-                     onClick={() => {
-                       setShowCreateForm(false);
-                       setFormData({ name: "", taxId: "", address: "", phone: "" });
-                     }}
-                     disabled={isCreating}
-                     className="rounded-lg"
-                   >
-                     Cancel
-                   </Button>
-                   <Button
-                     type="submit"
-                     variant="primary"
-                     isLoading={isCreating}
-                     disabled={isCreating}
-                     className="rounded-lg"
-                   >
-                     {isCreating ? "Creating..." : "Create Company"}
-                   </Button>
-                 </div>
-               </form>
+                  {/* Action Buttons */}
+                  <div className="flex gap-3 justify-end pt-2 border-t border-brand-200/30 dark:border-brand-400/15">
+                    <Button
+                      type="button"
+                      variant="ghost"
+                      onClick={() => {
+                        setShowCreateForm(false);
+                        setFormData({ name: "", taxId: "", address: "", phone: "" });
+                      }}
+                      disabled={isCreating}
+                      className="rounded-lg"
+                    >
+                      Cancel
+                    </Button>
+                    <Button
+                      type="submit"
+                      variant="primary"
+                      isLoading={isCreating}
+                      disabled={isCreating}
+                      className="rounded-lg"
+                    >
+                      {isCreating ? "Creating..." : "Create Company"}
+                    </Button>
+                  </div>
+                </form>
             ) : // Company List or Empty State
             companies.length === 0 ? (
               <div className="py-8">
@@ -221,8 +240,8 @@ export function CompanyModal({
                   selectedCompanyId={selectedCompanyId}
                   onSelectCompany={onSelectCompany}
                   onSettingsClick={(company) => {
-                    // TODO: Navigate to company settings page
-                    console.log("Settings for:", company.name);
+                    // Navigate to company settings page
+                    window.location.href = `/company/${company.id}/settings`;
                   }}
                 />
 

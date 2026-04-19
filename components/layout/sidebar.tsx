@@ -101,37 +101,66 @@ export function Sidebar() {
       {/* User Section */}
       <div className="border-t border-white/20 dark:border-white/10 px-3 py-4 space-y-2">
         {/* Company Section */}
-        <button
-          onClick={() => window.location.href = "/company"}
-          className={cn(
-            "flex w-full items-center gap-3 rounded-lg px-3 py-3 transition-all duration-200",
-            "focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-brand-500",
-            "text-gray-700 dark:text-gray-300 hover:bg-white/20 dark:hover:bg-white/10 backdrop-blur-sm"
-          )}
-          aria-label="Switch company"
-          title={company?.name || "Select company"}
-        >
-          {/* Company Logo Circle */}
-          <div className="flex h-10 w-10 items-center justify-center rounded-full glass-btn-primary text-sm font-bold text-white flex-shrink-0">
-            {company?.name.charAt(0).toUpperCase() || "C"}
-          </div>
-          {isSidebarExpanded && company && (
-            <div className="flex-1 min-w-0">
-              <p className="text-sm font-semibold text-gray-900 dark:text-white truncate">
+        {isSidebarExpanded && company && (
+          <div
+            onClick={() => window.location.href = "/company"}
+            className={cn(
+              "flex w-full items-start gap-2 rounded-lg backdrop-blur-md bg-white/40 dark:bg-white/10 px-3 py-3 border border-white/30 dark:border-white/10",
+              "focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-brand-500",
+              "transition-all duration-200 hover:bg-white/50 dark:hover:bg-white/15 cursor-pointer"
+            )}
+            role="button"
+            tabIndex={0}
+            aria-label="Switch company"
+            title={company?.name || "Select company"}
+            onKeyDown={(e) => {
+              if (e.key === 'Enter' || e.key === ' ') {
+                window.location.href = "/company";
+              }
+            }}
+          >
+            {/* Company Logo Circle */}
+            <div className="flex h-9 w-9 items-center justify-center rounded-full glass-btn-primary text-xs font-bold text-white flex-shrink-0 mt-0.5">
+              {company?.name.charAt(0).toUpperCase() || "C"}
+            </div>
+            <div className="flex-1 min-w-0 pt-0.5">
+              <p className="text-xs font-semibold text-gray-900 dark:text-white truncate leading-tight">
                 {company.name}
               </p>
+              <p className="text-xs text-gray-600 dark:text-gray-400 truncate">Engineering</p>
             </div>
-          )}
-        </button>
+          </div>
+        )}
+        {!isSidebarExpanded && company && (
+          <div
+            onClick={() => window.location.href = "/company"}
+            className={cn(
+              "flex h-9 w-9 items-center justify-center rounded-full glass-btn-primary text-xs font-bold text-white mx-auto",
+              "focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-brand-500",
+              "transition-all duration-200 cursor-pointer"
+            )}
+            role="button"
+            tabIndex={0}
+            aria-label="Switch company"
+            title={company?.name || "Select company"}
+            onKeyDown={(e) => {
+              if (e.key === 'Enter' || e.key === ' ') {
+                window.location.href = "/company";
+              }
+            }}
+          >
+            {company?.name.charAt(0).toUpperCase() || "C"}
+          </div>
+        )}
 
         {/* User Section */}
         {isSidebarExpanded && user && (
-          <div className="flex items-center gap-3 rounded-lg backdrop-blur-md bg-white/40 dark:bg-white/10 px-3 py-3 border border-white/30 dark:border-white/10">
-            <div className="flex h-10 w-10 items-center justify-center rounded-full glass-btn-primary text-sm font-bold text-white">
+          <div className="flex items-start gap-2 rounded-lg backdrop-blur-md bg-white/40 dark:bg-white/10 px-3 py-3 border border-white/30 dark:border-white/10">
+            <div className="flex h-9 w-9 items-center justify-center rounded-full glass-btn-primary text-xs font-bold text-white flex-shrink-0 mt-0.5">
               {user.firstName.charAt(0)}
             </div>
-            <div className="flex-1 min-w-0">
-              <p className="text-sm font-semibold text-gray-900 dark:text-white truncate">
+            <div className="flex-1 min-w-0 pt-0.5">
+              <p className="text-xs font-semibold text-gray-900 dark:text-white truncate leading-tight">
                 {user.preferredName || user.firstName}
               </p>
               <p className="text-xs text-gray-600 dark:text-gray-400 truncate">{user.email}</p>
@@ -139,7 +168,7 @@ export function Sidebar() {
           </div>
         )}
         {!isSidebarExpanded && user && (
-          <div className="flex h-10 w-10 items-center justify-center rounded-full glass-btn-primary text-sm font-bold text-white mx-auto" title={user.preferredName || user.firstName}>
+          <div className="flex h-9 w-9 items-center justify-center rounded-full glass-btn-primary text-xs font-bold text-white mx-auto" title={user.preferredName || user.firstName}>
             {user.firstName.charAt(0)}
           </div>
         )}
