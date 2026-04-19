@@ -1,7 +1,7 @@
 import { cn } from "@/lib/utils";
 
 interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
-  variant?: "primary" | "secondary" | "ghost";
+  variant?: "primary" | "secondary" | "ghost" | "glass";
   size?: "sm" | "md" | "lg";
   isLoading?: boolean;
 }
@@ -19,8 +19,8 @@ export function Button({
   return (
     <button
       className={cn(
-        "inline-flex items-center justify-center font-medium transition-colors rounded-lg",
-        "focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#f59e0b] focus-visible:ring-2",
+        "inline-flex items-center justify-center font-medium transition-all rounded-lg",
+        "focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-sun-500 focus-visible:ring-2",
         "disabled:opacity-50 disabled:cursor-not-allowed",
         "min-h-[44px] min-w-[44px]", // Touch target minimum
         // Size variants
@@ -29,11 +29,13 @@ export function Button({
         size === "lg" && "px-6 py-3 text-lg",
         // Color variants
         variant === "primary" &&
-          "bg-[#f59e0b] text-white hover:bg-[#b45309] active:bg-[#b45309]",
+          "glass-btn-primary hover:scale-[1.02] active:scale-[0.98]",
         variant === "secondary" &&
-          "bg-[#fef3c7] text-[#1c1207] hover:bg-[#fde68a] active:bg-[#fde68a]",
+          "bg-sun-100 text-gray-900 dark:bg-gray-800 dark:text-white hover:bg-sun-200 dark:hover:bg-gray-700 active:scale-[0.98]",
         variant === "ghost" &&
-          "text-[#1c1207] hover:bg-[#faf6f1] active:bg-[#f5f0e6]",
+          "glass-btn-ghost hover:scale-[1.01] active:scale-[0.99]",
+        variant === "glass" &&
+          "glass-btn hover:bg-white/80 dark:hover:bg-white/15 active:scale-[0.98]",
         className
       )}
       disabled={disabled || isLoading}

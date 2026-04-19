@@ -1,12 +1,12 @@
 import type { Metadata } from "next";
-import { DM_Sans, DM_Serif_Display } from "next/font/google";
+import { Geist, DM_Serif_Display } from "next/font/google";
 import { AuthProvider } from "@/context/auth-context";
 import { CompanyProvider } from "@/context/company-context";
 import { UIProvider } from "@/context/ui-context";
 import "./globals.css";
 
-const dmSans = DM_Sans({
-  variable: "--font-dm-sans",
+const geist = Geist({
+  variable: "--font-geist-sans",
   subsets: ["latin"],
   display: "swap",
 });
@@ -29,7 +29,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <head>
         <link
           rel="preconnect"
@@ -43,7 +43,7 @@ export default function RootLayout({
         />
       </head>
       <body
-        className={`${dmSans.variable} ${dmSerifDisplay.variable} antialiased`}
+        className={`${geist.variable} ${dmSerifDisplay.variable} antialiased`}
       >
         {/* Skip to main content link for accessibility */}
         <a
