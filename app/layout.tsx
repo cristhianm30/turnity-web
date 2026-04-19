@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Geist, DM_Serif_Display } from "next/font/google";
+import { Geist } from "next/font/google";
 import { AuthProvider } from "@/context/auth-context";
 import { CompanyProvider } from "@/context/company-context";
 import { UIProvider } from "@/context/ui-context";
@@ -8,13 +8,6 @@ import "./globals.css";
 const geist = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
-  display: "swap",
-});
-
-const dmSerifDisplay = DM_Serif_Display({
-  variable: "--font-dm-serif-display",
-  subsets: ["latin"],
-  weight: "400",
   display: "swap",
 });
 
@@ -43,7 +36,7 @@ export default function RootLayout({
         />
       </head>
       <body
-        className={`${geist.variable} ${dmSerifDisplay.variable} antialiased`}
+        className={`${geist.variable} antialiased`}
       >
         {/* Skip to main content link for accessibility */}
         <a

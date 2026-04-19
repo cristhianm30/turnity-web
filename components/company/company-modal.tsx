@@ -77,32 +77,32 @@ export function CompanyModal({
         />
       )}
 
-      {/* Modal Content */}
-      <DialogContent className="max-w-2xl p-0 border-0 bg-white/80 dark:bg-white/10 backdrop-blur-2xl rounded-3xl shadow-2xl dark:shadow-2xl/40 dark:border dark:border-white/20 overflow-hidden">
-        <div className="relative">
-          {/* Close Button - only show if dismissible */}
-          {dismissible && (
-            <button
-              onClick={handleClose}
-              className="absolute top-6 right-6 z-50 p-2 rounded-xl glass hover:bg-gray-100 dark:hover:bg-white/10 transition-colors"
-            >
-              <X className="h-5 w-5 text-gray-600 dark:text-gray-400" />
-            </button>
-          )}
+       {/* Modal Content */}
+       <DialogContent className="max-w-2xl p-0 border-0 border-brand-500/15 bg-white/80 dark:bg-white/10 backdrop-blur-2xl rounded-3xl shadow-2xl dark:shadow-2xl/40 dark:border dark:border-brand-500/15 overflow-hidden">
+         <div className="relative">
+           {/* Close Button - only show if dismissible */}
+           {dismissible && (
+             <button
+               onClick={handleClose}
+               className="absolute top-6 right-6 z-50 p-2 rounded-xl glass hover:bg-gray-100 dark:hover:bg-white/10 transition-colors"
+             >
+               <X className="h-5 w-5 text-gray-600 dark:text-gray-400" />
+             </button>
+           )}
 
-          {/* Header */}
-          <div className="p-8 pb-6 border-b border-white/40 dark:border-white/10">
-            <h2 className="font-display text-2xl font-bold text-gray-900 dark:text-white mb-2">
-              {showCreateForm ? "Create New Company" : "Select Company"}
-            </h2>
-            <p className="text-gray-600 dark:text-gray-400">
-              {showCreateForm
-                ? "Fill in the company details to get started."
-                : companies.length === 0
-                  ? "You don't have any companies yet."
-                  : `Choose a company to manage or create a new one.`}
-            </p>
-          </div>
+           {/* Header with Brand Gradient */}
+           <div className="p-8 pb-6 border-b border-brand-500/20 dark:border-brand-500/15 bg-gradient-to-r from-brand-50 to-brand-100/50 dark:from-brand-950/30 dark:to-brand-900/20">
+             <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">
+               {showCreateForm ? "Create New Company" : "Select Company"}
+             </h2>
+             <p className="text-gray-600 dark:text-gray-400">
+               {showCreateForm
+                 ? "Fill in the company details to get started."
+                 : companies.length === 0
+                   ? "You don't have any companies yet."
+                   : `Choose a company to manage or create a new one.`}
+             </p>
+           </div>
 
           {/* Content */}
           <div className="p-8">
@@ -121,52 +121,52 @@ export function CompanyModal({
                     placeholder="e.g. Acme Corp"
                     required
                     disabled={isCreating}
-                    className="glass dark:bg-white/5 border-white/30 dark:border-white/10 focus:border-sun-400 focus:ring-sun-500/20 transition-all rounded-xl"
-                  />
-                </div>
-                <div>
-                  <label htmlFor="taxId" className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
-                    Tax ID *
-                  </label>
-                  <Input
-                    id="taxId"
-                    name="taxId"
-                    value={formData.taxId}
-                    onChange={handleFormChange}
-                    placeholder="e.g. 12-3456789"
-                    required
-                    disabled={isCreating}
-                    className="glass dark:bg-white/5 border-white/30 dark:border-white/10 focus:border-sun-400 focus:ring-sun-500/20 transition-all rounded-xl"
-                  />
-                </div>
-                <div>
-                  <label htmlFor="address" className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
-                    Address *
-                  </label>
-                  <Input
-                    id="address"
-                    name="address"
-                    value={formData.address}
-                    onChange={handleFormChange}
-                    placeholder="e.g. 123 Main St, City, State"
-                    required
-                    disabled={isCreating}
-                    className="glass dark:bg-white/5 border-white/30 dark:border-white/10 focus:border-sun-400 focus:ring-sun-500/20 transition-all rounded-xl"
-                  />
-                </div>
-                <div>
-                  <label htmlFor="phone" className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
-                    Phone *
-                  </label>
-                  <Input
-                    id="phone"
-                    name="phone"
-                    value={formData.phone}
-                    onChange={handleFormChange}
-                    placeholder="e.g. +1 (555) 123-4567"
-                    required
-                    disabled={isCreating}
-                    className="glass dark:bg-white/5 border-white/30 dark:border-white/10 focus:border-sun-400 focus:ring-sun-500/20 transition-all rounded-xl"
+                    className="glass dark:bg-white/5 border-white/30 dark:border-white/10 focus:border-brand-400 focus:ring-brand-500/20 transition-all rounded-xl"
+                   />
+                 </div>
+                 <div>
+                   <label htmlFor="taxId" className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
+                     Tax ID *
+                   </label>
+                   <Input
+                     id="taxId"
+                     name="taxId"
+                     value={formData.taxId}
+                     onChange={handleFormChange}
+                     placeholder="e.g. 12-3456789"
+                     required
+                     disabled={isCreating}
+                     className="glass dark:bg-white/5 border-white/30 dark:border-white/10 focus:border-brand-400 focus:ring-brand-500/20 transition-all rounded-xl"
+                   />
+                 </div>
+                 <div>
+                   <label htmlFor="address" className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
+                     Address *
+                   </label>
+                   <Input
+                     id="address"
+                     name="address"
+                     value={formData.address}
+                     onChange={handleFormChange}
+                     placeholder="e.g. 123 Main St, City, State"
+                     required
+                     disabled={isCreating}
+                     className="glass dark:bg-white/5 border-white/30 dark:border-white/10 focus:border-brand-400 focus:ring-brand-500/20 transition-all rounded-xl"
+                   />
+                 </div>
+                 <div>
+                   <label htmlFor="phone" className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
+                     Phone *
+                   </label>
+                   <Input
+                     id="phone"
+                     name="phone"
+                     value={formData.phone}
+                     onChange={handleFormChange}
+                     placeholder="e.g. +1 (555) 123-4567"
+                     required
+                     disabled={isCreating}
+                     className="glass dark:bg-white/5 border-white/30 dark:border-white/10 focus:border-brand-400 focus:ring-brand-500/20 transition-all rounded-xl"
                   />
                 </div>
 

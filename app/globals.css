@@ -1,47 +1,49 @@
 @import "tailwindcss";
 
 @theme inline {
-  /* ===== WARM CANVAS PALETTE - Light Mode ===== */
+  /* ===== INDIGO/BRAND PALETTE - Light Mode ===== */
   
-  /* Primary Surface Colors */
-  --color-canvas: #faf9f7;
-  --color-canvas-alt: #f5f3f0;
+  /* Primary Surface Colors - Cool Canvas */
+  --color-canvas: #f8f9fc;
+  --color-canvas-alt: #f1f3f8;
   
-  /* Sidebar Colors - Now glass, but kept for backwards compat */
-  --color-sidebar-bg: #f5f3f0;
-  --color-sidebar-border: #e8dcd0;
-  --color-sidebar-text: #7d6d5c;
-  --color-sidebar-text-secondary: #9d8b7a;
+  /* Brand Color Scale - Indigo/Violet */
+  --color-brand-50: #eef2ff;
+  --color-brand-100: #e0e7ff;
+  --color-brand-200: #c7d2fe;
+  --color-brand-300: #a5b4fc;
+  --color-brand-400: #818cf8;
+  --color-brand-500: #6366f1;
+  --color-brand-600: #4f46e5;
+  --color-brand-700: #4338ca;
+  
+  /* Sidebar Colors - Glass with brand accents */
+  --color-sidebar-bg: #f1f3f8;
+  --color-sidebar-border: #d5ddf2;
+  --color-sidebar-text: #4b5563;
+  --color-sidebar-text-secondary: #6b7280;
   
   /* Navigation & Active States */
-  --color-nav-active-bg: #fef3c7;
-  --color-nav-active-text: #8b6d2e;
-  --color-nav-hover-bg: #faf6e8;
+  --color-nav-active-bg: #eef2ff;
+  --color-nav-active-text: #4f46e5;
+  --color-nav-hover-bg: #f3f4f8;
   
-  /* Accent Colors - Warm & Sophisticated */
-  --color-accent-warm: #d4a574;
-  --color-accent-dark: #6b4a2d;
-  --color-accent-soft: #e8d4bf;
+  /* Accent Colors - Professional Indigo */
+  --color-accent-primary: #6366f1;
+  --color-accent-dark: #4338ca;
+  --color-accent-soft: #dbeafe;
   
-  /* Warm Neutrals - Text & Secondary */
-  --color-earth-900: #1c1207;
-  --color-earth-700: #44321a;
-  --color-earth-500: #8b6545;
-  --color-earth-300: #c4a882;
-  --color-earth-100: #ede0ce;
+  /* Neutrals - Text & Secondary */
+  --color-earth-900: #0f172a;
+  --color-earth-700: #1e293b;
+  --color-earth-500: #64748b;
+  --color-earth-300: #cbd5e1;
+  --color-earth-100: #f1f5f9;
   
-  /* Sunflower Warm - Accents & Highlights */
-  --color-sun-50: #fffbf0;
-  --color-sun-100: #fef3c7;
-  --color-sun-200: #fde68a;
-  --color-sun-300: #fcd34d;
-  --color-sun-500: #f59e0b;
-  --color-sun-700: #b45309;
-  
-  /* Status Colors - Warm variants */
-  --color-success-warm: #6b8a3e;
-  --color-warning-warm: #c87137;
-  --color-danger-warm: #c85a54;
+  /* Status Colors - Professional variants */
+  --color-success-primary: #10b981;
+  --color-warning-primary: #f59e0b;
+  --color-danger-primary: #ef4444;
   
   /* ===== LIQUID GLASS TOKENS ===== */
   
@@ -50,9 +52,9 @@
   --glass-bg-lighter: rgba(255, 255, 255, 0.50);
   --glass-bg-heavy: rgba(255, 255, 255, 0.75);
   
-  /* Glass borders - subtle, frosted edge */
-  --glass-border-light: rgba(255, 255, 255, 0.35);
-  --glass-border-heavy: rgba(255, 255, 255, 0.50);
+  /* Glass borders - subtle with indigo tint */
+  --glass-border-light: rgba(99, 102, 241, 0.15);
+  --glass-border-heavy: rgba(99, 102, 241, 0.25);
   
   /* Glass highlight - specular reflection at top edge */
   --glass-highlight: rgba(255, 255, 255, 0.45);
@@ -64,18 +66,17 @@
   --glass-blur-xl: 32px;
   
   /* Dark mode glass */
-  --glass-bg-dark: rgba(15, 10, 5, 0.55);
-  --glass-bg-dark-light: rgba(25, 18, 10, 0.60);
-  --glass-border-dark: rgba(255, 255, 255, 0.08);
-  --glass-highlight-dark: rgba(255, 200, 124, 0.15);
+  --glass-bg-dark: rgba(15, 23, 42, 0.55);
+  --glass-bg-dark-light: rgba(30, 41, 59, 0.60);
+  --glass-border-dark: rgba(99, 102, 241, 0.15);
+  --glass-highlight-dark: rgba(99, 102, 241, 0.12);
   
-  /* Dark mode canvas */
-  --color-canvas-dark: #0f0a05;
-  --color-canvas-dark-alt: #1a1410;
+  /* Dark mode canvas - Cool dark blues */
+  --color-canvas-dark: #0a0c14;
+  --color-canvas-dark-alt: #111422;
   
   /* Typography */
   --font-sans: var(--font-geist-sans);
-  --font-display: var(--font-dm-serif-display);
 
   /* Overrides for Tailwind */
   --color-background: var(--color-canvas);
@@ -84,22 +85,22 @@
 
 
 :root {
-  --background: #faf9f7;
-  --foreground: #1c1207;
+  --background: #f8f9fc;
+  --foreground: #0f172a;
   color-scheme: light dark;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0f0a05;
-    --foreground: #faf9f7;
+    --background: #0a0c14;
+    --foreground: #f8f9fc;
   }
 }
 
 /* Dark mode class override */
 html.dark {
-  --background: #0f0a05;
-  --foreground: #faf9f7;
+  --background: #0a0c14;
+  --foreground: #f8f9fc;
   color-scheme: dark;
 }
 
@@ -112,15 +113,15 @@ html.dark {
     @apply backdrop-blur-lg bg-white/65 border border-white/30;
     box-shadow: 
       inset 0 1px 0 0 rgba(255, 255, 255, 0.45),
-      0 2px 8px rgba(28, 18, 7, 0.08),
-      0 4px 16px rgba(28, 18, 7, 0.04);
+      0 2px 8px rgba(99, 102, 241, 0.08),
+      0 4px 16px rgba(99, 102, 241, 0.04);
   }
   
   @media (prefers-color-scheme: dark) {
     .glass {
       @apply backdrop-blur-lg bg-black/45 border border-white/8;
       box-shadow: 
-        inset 0 1px 0 0 rgba(255, 200, 124, 0.15),
+        inset 0 1px 0 0 rgba(99, 102, 241, 0.12),
         0 2px 8px rgba(0, 0, 0, 0.3),
         0 4px 16px rgba(0, 0, 0, 0.2);
     }
@@ -131,15 +132,15 @@ html.dark {
     @apply backdrop-blur-md bg-white/65 border border-white/30 rounded-xl shadow-xl;
     box-shadow: 
       inset 0 1px 0 0 rgba(255, 255, 255, 0.45),
-      0 4px 16px rgba(28, 18, 7, 0.08),
-      0 8px 24px rgba(28, 18, 7, 0.04);
+      0 4px 16px rgba(99, 102, 241, 0.08),
+      0 8px 24px rgba(99, 102, 241, 0.04);
   }
   
   @media (prefers-color-scheme: dark) {
     .glass-card {
       @apply backdrop-blur-md bg-black/45 border border-white/8;
       box-shadow: 
-        inset 0 1px 0 0 rgba(255, 200, 124, 0.15),
+        inset 0 1px 0 0 rgba(99, 102, 241, 0.12),
         0 4px 16px rgba(0, 0, 0, 0.3),
         0 8px 24px rgba(0, 0, 0, 0.2);
     }
@@ -150,15 +151,15 @@ html.dark {
     @apply backdrop-blur-2xl bg-white/60 border border-white/20;
     box-shadow: 
       inset 0 1px 0 0 rgba(255, 255, 255, 0.50),
-      2px 0 20px rgba(28, 18, 7, 0.1),
-      0 0 40px rgba(28, 18, 7, 0.06);
+      2px 0 20px rgba(99, 102, 241, 0.1),
+      0 0 40px rgba(99, 102, 241, 0.06);
   }
   
   @media (prefers-color-scheme: dark) {
     .glass-sidebar {
       @apply backdrop-blur-2xl bg-black/50 border border-white/10;
       box-shadow: 
-        inset 0 1px 0 0 rgba(255, 200, 124, 0.12),
+        inset 0 1px 0 0 rgba(99, 102, 241, 0.12),
         2px 0 20px rgba(0, 0, 0, 0.4),
         0 0 40px rgba(0, 0, 0, 0.3);
     }
@@ -167,28 +168,28 @@ html.dark {
   /* Glass button base */
   .glass-btn {
     @apply backdrop-blur-md bg-white/70 border border-white/40 transition-all duration-200;
-    box-shadow: inset 0 1px 0 0 rgba(255, 255, 255, 0.50), 0 1px 3px rgba(28, 18, 7, 0.06);
+    box-shadow: inset 0 1px 0 0 rgba(255, 255, 255, 0.50), 0 1px 3px rgba(99, 102, 241, 0.06);
   }
   
   @media (prefers-color-scheme: dark) {
     .glass-btn {
       @apply backdrop-blur-md bg-white/10 border border-white/15;
-      box-shadow: inset 0 1px 0 0 rgba(255, 200, 124, 0.12), 0 1px 3px rgba(0, 0, 0, 0.2);
+      box-shadow: inset 0 1px 0 0 rgba(99, 102, 241, 0.12), 0 1px 3px rgba(0, 0, 0, 0.2);
     }
   }
   
   /* Glass button primary variant */
   .glass-btn-primary {
-    @apply bg-sun-500/90 border border-sun-500/80 text-white transition-all duration-200;
+    @apply bg-brand-500/90 border border-brand-500/80 text-white transition-all duration-200;
     box-shadow: 
       inset 0 1px 0 0 rgba(255, 255, 255, 0.25),
-      0 2px 8px rgba(245, 158, 11, 0.3),
-      0 4px 12px rgba(245, 158, 11, 0.15);
+      0 2px 8px rgba(99, 102, 241, 0.3),
+      0 4px 12px rgba(99, 102, 241, 0.15);
   }
   
   .glass-btn-primary:hover {
-    background-color: rgba(180, 83, 9, 0.98);
-    border-color: rgba(180, 83, 9, 0.85);
+    background-color: rgba(79, 70, 229, 0.98);
+    border-color: rgba(79, 70, 229, 0.85);
     transform: scale(1.02);
   }
   
@@ -198,11 +199,11 @@ html.dark {
   
   @media (prefers-color-scheme: dark) {
     .glass-btn-primary {
-      @apply bg-sun-500/80 border border-sun-500/60;
+      @apply bg-brand-500/80 border border-brand-500/60;
       box-shadow: 
-        inset 0 1px 0 0 rgba(255, 200, 124, 0.20),
-        0 2px 8px rgba(245, 158, 11, 0.4),
-        0 4px 12px rgba(245, 158, 11, 0.2);
+        inset 0 1px 0 0 rgba(99, 102, 241, 0.20),
+        0 2px 8px rgba(99, 102, 241, 0.4),
+        0 4px 12px rgba(99, 102, 241, 0.2);
     }
   }
   
@@ -229,25 +230,25 @@ html.dark {
   
   /* Canvas background with subtle gradient mesh */
   .canvas-bg {
-    background: linear-gradient(135deg, #faf9f7 0%, #f5f3f0 50%, #ede0ce 100%);
+    background: linear-gradient(135deg, #f8f9fc 0%, #f1f3f8 50%, #e8ecf4 100%);
   }
   
   @media (prefers-color-scheme: dark) {
     .canvas-bg {
-      background: linear-gradient(135deg, #0f0a05 0%, #1a1410 50%, #2a1f15 100%);
+      background: linear-gradient(135deg, #0a0c14 0%, #111422 50%, #1a1d2e 100%);
     }
   }
   
   /* Animated gradient mesh for dashboard */
   .gradient-mesh {
     position: relative;
-    background: linear-gradient(135deg, #faf9f7 0%, #f5f3f0 25%, #fef3c7 50%, #ede0ce 75%, #f5f3f0 100%);
+    background: linear-gradient(135deg, #f8f9fc 0%, #f1f3f8 25%, #eef2ff 50%, #e8ecf4 75%, #f1f3f8 100%);
     background-size: 400% 400%;
   }
   
   @media (prefers-color-scheme: dark) {
     .gradient-mesh {
-      background: linear-gradient(135deg, #0f0a05 0%, #1a1410 25%, #2d1f10 50%, #1a1410 75%, #0f0a05 100%);
+      background: linear-gradient(135deg, #0a0c14 0%, #111422 25%, #1e1b4b 50%, #111422 75%, #0a0c14 100%);
       background-size: 400% 400%;
     }
   }
@@ -270,25 +271,25 @@ html.dark {
     background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
   }
   
-  /* Warm card background variant */
-  .bg-warm-tint {
-    @apply bg-[#faf6f1];
+  /* Cool tint background variant */
+  .bg-cool-tint {
+    @apply bg-[#f3f4f8];
   }
   
   @media (prefers-color-scheme: dark) {
-    .bg-warm-tint {
-      @apply bg-[#1a1410];
+    .bg-cool-tint {
+      @apply bg-[#111422];
     }
   }
   
   /* Subtle border utility */
-  .border-warm {
-    @apply border-[#e8dcd0];
+  .border-cool {
+    @apply border-[#d5ddf2];
   }
   
   @media (prefers-color-scheme: dark) {
-    .border-warm {
-      @apply border-[#2a1f15];
+    .border-cool {
+      @apply border-[#1e293b];
     }
   }
 
@@ -305,20 +306,20 @@ html.dark {
   
   .glass-scrollbar::-webkit-scrollbar-thumb {
     @apply bg-gray-400 rounded-full;
-    background: rgba(107, 69, 45, 0.3);
+    background: rgba(99, 102, 241, 0.3);
   }
   
   .glass-scrollbar::-webkit-scrollbar-thumb:hover {
-    background: rgba(107, 69, 45, 0.5);
+    background: rgba(99, 102, 241, 0.5);
   }
   
   @media (prefers-color-scheme: dark) {
     .glass-scrollbar::-webkit-scrollbar-thumb {
-      background: rgba(255, 255, 255, 0.15);
+      background: rgba(99, 102, 241, 0.2);
     }
     
     .glass-scrollbar::-webkit-scrollbar-thumb:hover {
-      background: rgba(255, 255, 255, 0.25);
+      background: rgba(99, 102, 241, 0.3);
     }
   }
 }
@@ -334,11 +335,11 @@ body {
 
 html.dark body {
   background: var(--color-canvas-dark);
-  color: #faf9f7;
+  color: #f8f9fc;
 }
 
 h1, h2, h3, h4, .font-display {
-  font-family: var(--font-display);
+  font-family: var(--font-sans);
   font-weight: 600;
   letter-spacing: -0.5px;
 }

@@ -39,15 +39,15 @@ export function Input({
           "placeholder-gray-400 dark:placeholder-gray-500",
           "focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 dark:focus-visible:ring-offset-gray-950",
           "min-h-[44px]", // Touch target minimum
-          // Variant: standard (underline only)
-          variant === "standard" &&
-            "bg-transparent border-b-2 border-gray-200 dark:border-gray-700 text-gray-900 dark:text-white focus:border-sun-500 dark:focus:border-sun-400 focus-visible:ring-sun-500/30 dark:focus-visible:ring-sun-400/30",
-          // Variant: filled
-          variant === "filled" &&
-            "bg-gray-50 dark:bg-white/5 border border-gray-200 dark:border-white/10 text-gray-900 dark:text-white rounded-lg px-4 focus:border-sun-500 dark:focus:border-sun-400 focus:bg-white dark:focus:bg-white/10 focus-visible:ring-sun-500/30 dark:focus-visible:ring-sun-400/30",
-          // Variant: glass
-          variant === "glass" &&
-            "glass dark:bg-white/5 border border-white/30 dark:border-white/10 text-gray-900 dark:text-white rounded-xl px-4 focus:border-sun-400 dark:focus:border-sun-400 focus:ring-sun-500/20 dark:focus:ring-sun-400/20",
+           // Variant: standard (underline only)
+           variant === "standard" &&
+             "bg-transparent border-b-2 border-gray-200 dark:border-gray-700 text-gray-900 dark:text-white focus:border-brand-500 dark:focus:border-brand-400 focus-visible:ring-brand-500/30 dark:focus-visible:ring-brand-400/30",
+           // Variant: filled
+           variant === "filled" &&
+             "bg-gray-50 dark:bg-white/5 border border-gray-200 dark:border-white/10 text-gray-900 dark:text-white rounded-lg px-4 focus:border-brand-500 dark:focus:border-brand-400 focus:bg-white dark:focus:bg-white/10 focus-visible:ring-brand-500/30 dark:focus-visible:ring-brand-400/30",
+           // Variant: glass
+           variant === "glass" &&
+             "glass dark:bg-white/5 border border-white/30 dark:border-white/10 text-gray-900 dark:text-white rounded-xl px-4 focus:border-brand-400 dark:focus:border-brand-400 focus:ring-brand-500/20 dark:focus:ring-brand-400/20",
           error && "border-red-500 dark:border-red-900/50 focus:border-red-500 dark:focus:border-red-400 focus-visible:ring-red-500/30 dark:focus-visible:ring-red-400/30",
           className
         )}

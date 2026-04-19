@@ -20,7 +20,7 @@ export function Button({
     <button
       className={cn(
         "inline-flex items-center justify-center font-medium transition-all rounded-lg",
-        "focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-sun-500 focus-visible:ring-2",
+        "focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-brand-500 focus-visible:ring-2",
         "disabled:opacity-50 disabled:cursor-not-allowed",
         "min-h-[44px] min-w-[44px]", // Touch target minimum
         // Size variants
@@ -31,7 +31,7 @@ export function Button({
         variant === "primary" &&
           "glass-btn-primary hover:scale-[1.02] active:scale-[0.98]",
         variant === "secondary" &&
-          "bg-sun-100 text-gray-900 dark:bg-gray-800 dark:text-white hover:bg-sun-200 dark:hover:bg-gray-700 active:scale-[0.98]",
+          "bg-brand-100 text-gray-900 dark:bg-gray-800 dark:text-white hover:bg-brand-200 dark:hover:bg-gray-700 active:scale-[0.98]",
         variant === "ghost" &&
           "glass-btn-ghost hover:scale-[1.01] active:scale-[0.99]",
         variant === "glass" &&
